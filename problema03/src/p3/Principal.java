@@ -1,39 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package p3;
 
-import p1.MatriculaCampamento;
-import p1.MatriculaColegio;
-import p1.MatriculaEscuela;
-import p1.MatriculaJardin;
-import p1.MatriculaMaternal;
+import p1.*;
 import p2.TipoMatricula;
 
-/**
- *
- * @author reroes
- */
+import java.util.ArrayList;
 public class Principal {
     public static void main(String[] args) {
-        TipoMatricula tipos = new TipoMatricula();
-        
-        MatriculaCampamento mcamp = new MatriculaCampamento();
-        mcamp.establecerTarifa();
-        
-        MatriculaColegio mcolegio = new MatriculaColegio();
-        mcolegio.establecerTarifa();
-        
-        MatriculaEscuela mescuela = new MatriculaEscuela();
-        MatriculaJardin mjardin = new MatriculaJardin();
-        MatriculaMaternal mmaternal = new MatriculaMaternal();
-        MatriculaMaternal mmaternal2 = new MatriculaMaternal();
-        
-        tipos.establecerMatriculaCampamento(mcamp);
-        tipos.establecerMatriculaColegio(mcolegio);
-        tipos.establecerPromedioTarifas();
-        System.out.printf("%s\n", tipos);
+        ArrayList<Matricula> matricula= new ArrayList<>();
+        matricula.add(new MatriculaCampamento(50,20,10));
+        matricula.add(new MatriculaColegio(100,10,75,10));
+        matricula.add( new MatriculaEscuela(50,25,10,60));
+        matricula.add (new MatriculaJardin(50,90,100));
+        matricula.add(new MatriculaMaternal(50,75,150));
+        matricula.add(new MatriculaMaternal(50,75,150));
+        for (Matricula matriculas: matricula){
+            matriculas.establecerTarifa();
+        }
+        TipoMatricula tipoMatricula= new TipoMatricula(matricula);
+        for (Matricula matriculas: matricula)
+            System.out.println(matriculas);
+        System.out.printf("Tarifas: %s\n", tipoMatricula.establecerPromedioTarifas());
     }
 }
